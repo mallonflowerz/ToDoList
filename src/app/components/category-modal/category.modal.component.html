@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ category ? 'Editar categoría' : 'Nueva categoría' }}
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="save()" [disabled]="!model.title">
+        Guardar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-container">
+    <ion-item>
+      <ion-input label="Nombre" placeholder="Ingrese el nombre de la categoría" [(ngModel)]="model.title">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Color
+      </ion-label>
+      <app-color-picker [value]="color ?? 'primary'"></app-color-picker>
+    </ion-item>
+  </div>
+</ion-content>

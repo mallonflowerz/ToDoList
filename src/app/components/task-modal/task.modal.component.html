@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ task ? 'Editar tarea' : 'Nueva tarea' }}
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="save()" [disabled]="!model.title">
+        Guardar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-container">
+    <ion-item>
+      <ion-input label="Nombre" placeholder="Ingrese la tarea" [(ngModel)]="model.title">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Categoría
+      </ion-label>
+      <ion-select interface="popover" [(ngModel)]="model.categoryId">
+        @for(category of categories; track category.id){
+        <ion-select-option [value]="category.id">
+          {{ category.title }}
+        </ion-select-option>
+        }
+      </ion-select>
+    </ion-item>
+  </div>
+</ion-content>

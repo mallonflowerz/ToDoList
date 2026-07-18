@@ -1,0 +1,13 @@
+ion-item {
+    --min-height: 70px;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: .6;
+}
+
+ion-note {
+    display: block;
+    margin-top: 6px;
+}

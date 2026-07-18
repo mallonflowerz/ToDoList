@@ -1,0 +1,26 @@
+.colors {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 8px 4px;
+    scrollbar-width: none;
+}
+
+.colors::-webkit-scrollbar {
+    display: none;
+}
+
+.color {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: .2s;
+}
+
+.color.selected {
+    border: 3px solid var(--ion-color-dark);
+    transform: scale(1.15);
+}

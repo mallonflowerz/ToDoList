@@ -1,7 +1,64 @@
 <ion-header>
     <ion-toolbar color="primary">
         <ion-title>
-            Tus tareas
+            Mis tareas
         </ion-title>
+        <ion-buttons slot="primary">
+            <ion-button fill="outline" (click)="goToCategories()">
+                Categorias
+                <ion-icon slot="end" name="albums-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
+<ion-content>
+    <div class="page-container">
+        <ion-searchbar placeholder="Buscar tarea"></ion-searchbar>
+        <ion-item>
+            <ion-select label="Categoría" [(ngModel)]="filter">
+                @for(category of categoryService.allCategories(); track category){
+                <ion-select-option [value]="category">
+                    {{category.title}}
+                </ion-select-option>
+                }
+            </ion-select>
+        </ion-item>
+        @if (taskService.allTasks().length == 0) {
+        <div style="text-align: center;">
+            <ion-text color="primary">
+                <h3>No hay tareas para mostrar</h3>
+            </ion-text>
+            <ion-button shape="round" (click)="addTask()">
+                <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                Crear nueva
+            </ion-button>
+        </div>
+        } @else {
+        <ion-list>
+            @for(task of taskService.allTasks(); track task.id){
+            <ion-item-sliding>
+                <ion-item>
+                    <ion-checkbox slot="start" [(ngModel)]="task.completed">
+                    </ion-checkbox>
+                    <ion-label>
+                        <h2>{{task.title}} </h2>
+                        <ion-note>{{categoryService.getById(task.id)?.title ?? ''}}</ion-note>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item-options side="end">
+                    <ion-item-option color="danger" (click)="deleteById(task)">
+                        <ion-icon name="trash"> </ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+            }
+        </ion-list>
+        }
+        <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+            <ion-fab-button (click)="addTask()">
+                <ion-icon name="add"> </ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </div>
+</ion-content>

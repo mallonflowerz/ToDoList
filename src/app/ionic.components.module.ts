@@ -15,7 +15,14 @@ import {
     IonItemOptions,
     IonItemOption,
     IonText,
-    IonButton
+    IonButton,
+    IonButtons,
+    IonSearchbar,
+    IonSelect,
+    IonSelectOption,
+    IonNote,
+    IonInput,
+    IonFooter,
 } from '@ionic/angular/standalone';
 
 @NgModule({
@@ -35,7 +42,14 @@ import {
         IonItemOptions,
         IonItemOption,
         IonText,
-        IonButton
+        IonButton,
+        IonButtons,
+        IonSearchbar,
+        IonSelect,
+        IonSelectOption,
+        IonNote,
+        IonInput,
+        IonFooter,
     ],
     exports: [
         CommonModule,
@@ -53,7 +67,14 @@ import {
         IonItemOptions,
         IonItemOption,
         IonText,
-        IonButton
+        IonButton,
+        IonButtons,
+        IonSearchbar,
+        IonSelect,
+        IonSelectOption,
+        IonNote,
+        IonInput,
+        IonFooter,
     ]
 })
 export class IonicComponentsModule { }
