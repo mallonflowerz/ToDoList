@@ -25,6 +25,7 @@
         Categoria
       </ion-label>
       <ion-select interface="popover" [(ngModel)]="model.categoryId">
+        <ion-select-option [value]="undefined">Ninguna</ion-select-option>
         @for (category of categories; track category.id) {
         <ion-select-option [value]="category.id">
           {{ category.title }}
