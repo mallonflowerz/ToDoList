@@ -37,27 +37,35 @@ En los estilos se usaron componentes nativos de Ionic para que así al momento d
 ## Videos e Imagenes de evidencia
 
 - Crear una tarea.
+
 ![crearTareaDesk](evidencias/crearTareaDesk.gif)
 
 - Editar tarea.
+
 ![editarTareaIos](evidencias/editarTareaIos.gif)
 
 - Crear categoría.
+
 ![crearCategoryAndroid](evidencias/crearCategoryAndroid.gif)
 
 - Asignar categoría a tarea y filtrar por ella.
+
 ![asignarCategory](evidencias/asignarCategoryIos.gif)
 
 - Eliminar categoría y tarea.
+
 ![deleteTaskAndCategory](evidencias/deleteCatAndTask.gif)
 
 - Usar buscador en las tareas.
+
 ![searchTask](evidencias/searchCharTask.gif)
 
 - App ejecutada en APK móvil.
+
 ![appMovil](evidencias/videoApp.gif)
 
 - **Demostración** de Firebase Remote Config para habilitar/deshabilitar categorías.
+
 ![firebaseRemote](evidencias/firebaseConfigTask.gif)
 
 ## Ejecucion de proyecto y compilación
