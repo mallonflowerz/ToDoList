@@ -10,6 +10,7 @@ import { AlertController, ModalController } from '@ionic/angular/standalone';
 import { ToastController } from '@ionic/angular';
 import { TaskModalComponent } from '../../components/task-modal/task.modal.component';
 import { Router } from '@angular/router';
+import { FirebaseConfigService } from '../../services/firebase.config.service';
 
 @Component({
   selector: 'app-home',
@@ -20,15 +21,20 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  activeCategories = true;
+
   constructor(public categoryService: CategoryService,
     public taskService: TaskService,
     private modalController: ModalController,
     private alertController: AlertController,
+    private configService: FirebaseConfigService,
     private router: Router) {
     addIcons({ add, trash, addCircleOutline, albumsOutline, create, pricetagOutline });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.activeCategories = this.configService.getCategoryActive();
+  }
 
   async addTask() {
     const modalComp = await this.modalController.create({

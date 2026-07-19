@@ -3,18 +3,21 @@
         <ion-title>
             Mis tareas
         </ion-title>
+        @if (activeCategories) {
         <ion-buttons slot="primary">
             <ion-button fill="outline" (click)="goToCategories()">
                 Categorias
                 <ion-icon slot="end" name="albums-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
+        }
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <div class="page-container">
         <ion-searchbar placeholder="Buscar tarea" [value]="taskService.search()"
             (ionInput)="addSearch($event.detail.value ?? '')"></ion-searchbar>
+        @if (activeCategories) {
         <ion-item>
             <ion-select label="Categoría" [value]="taskService.selectedCategory()"
                 (ionChange)="selectedCategory($event.detail.value)">
@@ -26,6 +29,7 @@
                 }
             </ion-select>
         </ion-item>
+        }
         @if (taskService.filteredTasks().length == 0) {
         <div style="text-align: center;">
             <ion-text color="primary">
@@ -46,7 +50,7 @@
                     <ion-label>
                         <h2>{{task.title}} </h2>
                         @let category = categoryService.getById(task.categoryId ?? '');
-                        @if (category) {
+                        @if (category && activeCategories) {
                         <div style="display: flex; align-items: center; gap: 5px;">
                             <ion-icon slot="start" name="pricetag-outline" [color]="category.color"></ion-icon>
                             <ion-note [color]="category?.color">{{category.title}}</ion-note>

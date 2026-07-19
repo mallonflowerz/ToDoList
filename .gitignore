@@ -45,3 +45,7 @@ Thumbs.db
 platforms/
 plugins/
 www/
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
