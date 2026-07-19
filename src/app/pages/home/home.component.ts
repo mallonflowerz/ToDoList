@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { TaskService } from '../../services/task.service';
 import { IonicComponentsModule } from '../../ionic.components.module';
-import { add, addCircleOutline, albumsOutline, alertOutline, leafOutline, trash } from 'ionicons/icons';
+import { add, addCircleOutline, albumsOutline, alertOutline, create, leafOutline, pricetagOutline, trash } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { FormsModule } from '@angular/forms';
 import { Task } from '../../models/task.model';
@@ -20,20 +20,18 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  filter = 0;
-
   constructor(public categoryService: CategoryService,
     public taskService: TaskService,
-    private modal: ModalController,
+    private modalController: ModalController,
     private alertController: AlertController,
     private router: Router) {
-    addIcons({ add, trash, addCircleOutline, albumsOutline });
+    addIcons({ add, trash, addCircleOutline, albumsOutline, create, pricetagOutline });
   }
 
   ngOnInit() { }
 
   async addTask() {
-    const modalComp = await this.modal.create({
+    const modalComp = await this.modalController.create({
       component: TaskModalComponent,
       componentProps: { categories: this.categoryService.allCategories() },
       breakpoints: [0, 0.5, 0.8],
@@ -48,8 +46,20 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  toggleCompleted(task: Task) {
+    this.taskService.update(task);
+  }
+
+  selectedCategory(id: string) {
+    this.taskService.selectedCategory.set(id);
+  }
+
+  addSearch(query: string) {
+    this.taskService.search.set(query);
+  }
+
   async edit(task: Task) {
-    const modalComp = await this.modal.create({
+    const modalComp = await this.modalController.create({
       component: TaskModalComponent,
       componentProps: { categories: this.categoryService.allCategories(), task },
       breakpoints: [0, 0.5, 0.8],

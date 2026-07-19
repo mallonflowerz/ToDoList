@@ -19,9 +19,6 @@ export class ColorPickerComponent {
     { name: 'success', color: '#2dd55b' },
     { name: 'warning', color: '#ffc409' },
     { name: 'danger', color: '#c5000f' },
-    { name: 'dark', color: '#2f2f2f' },
-    { name: 'medium', color: '#5f5f5f' },
-    { name: 'light', color: '#f4f5f8' }
   ];
 
   select(color: string) {

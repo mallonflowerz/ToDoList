@@ -13,20 +13,23 @@
 </ion-header>
 <ion-content>
     <div class="page-container">
-        <ion-searchbar placeholder="Buscar tarea"></ion-searchbar>
+        <ion-searchbar placeholder="Buscar tarea" [value]="taskService.search()"
+            (ionInput)="addSearch($event.detail.value ?? '')"></ion-searchbar>
         <ion-item>
-            <ion-select label="Categoría" [(ngModel)]="filter">
-                @for(category of categoryService.allCategories(); track category){
-                <ion-select-option [value]="category">
+            <ion-select label="Categoría" [value]="taskService.selectedCategory()"
+                (ionChange)="selectedCategory($event.detail.value)">
+                <ion-select-option [value]="null">Todas las categorias</ion-select-option>
+                @for (category of categoryService.allCategories(); track category) {
+                <ion-select-option [value]="category.id">
                     {{category.title}}
                 </ion-select-option>
                 }
             </ion-select>
         </ion-item>
-        @if (taskService.allTasks().length == 0) {
+        @if (taskService.filteredTasks().length == 0) {
         <div style="text-align: center;">
             <ion-text color="primary">
-                <h3>No hay tareas para mostrar</h3>
+                <h3>No hay tareas con los filtros indicados</h3>
             </ion-text>
             <ion-button shape="round" (click)="addTask()">
                 <ion-icon slot="start" name="add-circle-outline"></ion-icon>
@@ -35,19 +38,26 @@
         </div>
         } @else {
         <ion-list>
-            @for(task of taskService.allTasks(); track task.id){
+            @for (task of taskService.filteredTasks(); track task.id) {
             <ion-item-sliding>
                 <ion-item>
-                    <ion-checkbox slot="start" [(ngModel)]="task.completed">
+                    <ion-checkbox slot="start" [(ngModel)]="task.completed" (ionChange)="toggleCompleted(task)">
                     </ion-checkbox>
                     <ion-label>
                         <h2>{{task.title}} </h2>
-                        <ion-note>{{categoryService.getById(task.id)?.title ?? ''}}</ion-note>
+                        @let category = categoryService.getById(task.categoryId ?? '');
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <ion-icon slot="start" name="pricetag-outline" [color]="category?.color"></ion-icon>
+                            <ion-note [color]="category?.color">{{category?.title ?? ''}}</ion-note>
+                        </div>
                     </ion-label>
                 </ion-item>
 
                 <ion-item-options side="end">
-                    <ion-item-option color="danger" (click)="deleteById(task)">
+                    <ion-item-option color="primary" (click)="edit(task)" title="Editar">
+                        <ion-icon name="create"></ion-icon>
+                    </ion-item-option>
+                    <ion-item-option color="danger" (click)="deleteById(task)" title="Eliminar">
                         <ion-icon name="trash"> </ion-icon>
                     </ion-item-option>
                 </ion-item-options>

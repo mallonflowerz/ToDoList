@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { StorageService } from './storage.service';
 import { Task } from '../models/task.model';
 import { UIDRandom } from '../core/utils/uid.utils';
@@ -9,12 +9,26 @@ import { UIDRandom } from '../core/utils/uid.utils';
 export class TaskService {
   private KEY_TASK = "tasks";
 
+  selectedCategory = signal<string | null>(null);
+  search = signal('');
   private readonly _allTasks = signal<Task[]>([]);
   readonly allTasks = this._allTasks.asReadonly();
 
   constructor(private storageService: StorageService) {
     this.getAllTasks();
   }
+
+  filteredTasks = computed(() => {
+    const catId = this.selectedCategory();
+    const search = this.search().toLowerCase();
+
+    return this.allTasks().filter(t => {
+      const matchesInCategory = catId === null || t.categoryId === catId;
+      const matchesInSearch = t.title.toLowerCase().includes(search);
+
+      return matchesInCategory && matchesInSearch;
+    })
+  });
 
   getAllTasks() {
     const tasks = this.storageService.get(this.KEY_TASK);
@@ -25,11 +39,7 @@ export class TaskService {
     return this.allTasks().find(c => c.id === id);
   }
 
-  filterByCategory(categoryId: string) {
-    this._allTasks.set(this.allTasks().filter(t => t.categoryId !== categoryId));
-  }
-
-  toggleCompleted(completed: boolean) {
+  listCompleted(completed: boolean) {
     this._allTasks.set(this.allTasks().filter(t => t.completed === completed));
   }
 

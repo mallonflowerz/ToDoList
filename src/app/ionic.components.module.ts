@@ -23,6 +23,8 @@ import {
     IonNote,
     IonInput,
     IonFooter,
+    IonCheckbox,
+    IonChip,
 } from '@ionic/angular/standalone';
 
 @NgModule({
@@ -50,6 +52,8 @@ import {
         IonNote,
         IonInput,
         IonFooter,
+        IonCheckbox,
+        IonChip,
     ],
     exports: [
         CommonModule,
@@ -75,6 +79,8 @@ import {
         IonNote,
         IonInput,
         IonFooter,
+        IonCheckbox,
+        IonChip,
     ]
 })
 export class IonicComponentsModule { }

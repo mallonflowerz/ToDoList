@@ -23,7 +23,7 @@ export class CategoriesComponent implements OnInit {
   constructor(public categoryService: CategoryService,
     private alertController: AlertController,
     private toastController: ToastController,
-    private modal: ModalController,
+    private modalController: ModalController,
     private router: Router) {
     addIcons({ add, create, trash, addCircleOutline, listOutline });
   }
@@ -33,7 +33,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   async edit(category: Category) {
-    const modalComp = await this.modal.create({
+    const modalComp = await this.modalController.create({
       component: CategoryModalComponent,
       componentProps: { category },
       breakpoints: [0, 0.5, 0.8],
@@ -68,7 +68,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   async addCategory() {
-    const modalComp = await this.modal.create({
+    const modalComp = await this.modalController.create({
       component: CategoryModalComponent,
       breakpoints: [0, 0.5, 0.8],
       initialBreakpoint: 0.5

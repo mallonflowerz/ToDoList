@@ -19,7 +19,7 @@ export class TaskModalComponent implements OnInit {
 
   model: Task = { title: '', categoryId: undefined, completed: false, id: '' };
 
-  constructor(private modal: ModalController) { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {
     if (this.task) {
@@ -28,11 +28,11 @@ export class TaskModalComponent implements OnInit {
   }
 
   cancel() {
-    this.modal.dismiss();
+    this.modalController.dismiss();
   }
 
   save() {
-    this.modal.dismiss(this.model);
+    this.modalController.dismiss(this.model);
   }
 
 }

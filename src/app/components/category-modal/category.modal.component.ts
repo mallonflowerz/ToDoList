@@ -21,7 +21,7 @@ export class CategoryModalComponent implements OnInit {
 
   model: Category = { title: '', color: 'primary', id: '' };
 
-  constructor(private modal: ModalController,
+  constructor(private modalController: ModalController,
     private categoryService: CategoryService,
     private toastController: ToastController) { }
 
@@ -32,7 +32,7 @@ export class CategoryModalComponent implements OnInit {
   }
 
   cancel() {
-    this.modal.dismiss();
+    this.modalController.dismiss();
   }
 
   save() {
@@ -40,7 +40,7 @@ export class CategoryModalComponent implements OnInit {
       this.showToastTip("Ya existe una categoria con ese nombre", undefined, 'danger');
       return;
     }
-    this.modal.dismiss(this.model);
+    this.modalController.dismiss(this.model);
   }
 
   private async showToastTip(message: string, duration: number = 2000, color: string = 'success') {
