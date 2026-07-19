@@ -32,7 +32,8 @@
           <ion-label>
             <h2>{{category.title}}</h2>
           </ion-label>
-          <div class="color" [style.background]="category.color"></div>
+          <div slot="end" class="category-color" [style.background]="'var(--ion-color-' + category.color + ')'">
+          </div>
         </ion-item>
         <ion-item-options side="end">
           <ion-item-option color="primary" (click)="edit(category)" title="Editar">
