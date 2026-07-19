@@ -46,10 +46,12 @@
                     <ion-label>
                         <h2>{{task.title}} </h2>
                         @let category = categoryService.getById(task.categoryId ?? '');
+                        @if (category) {
                         <div style="display: flex; align-items: center; gap: 5px;">
-                            <ion-icon slot="start" name="pricetag-outline" [color]="category?.color"></ion-icon>
-                            <ion-note [color]="category?.color">{{category?.title ?? ''}}</ion-note>
+                            <ion-icon slot="start" name="pricetag-outline" [color]="category.color"></ion-icon>
+                            <ion-note [color]="category?.color">{{category.title}}</ion-note>
                         </div>
+                        }
                     </ion-label>
                 </ion-item>
 
