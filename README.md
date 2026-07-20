@@ -79,7 +79,7 @@ Para ejecutar y compilar este proyecto se debe hacer lo siguiente:
 ## Archivos y proyecto
 En la carpeta *evidencias* se encuentran todos los videos de pruebas realizadas, también el archivo APK *todolist.apk* para que puedan instalarla en un equipo Android para realizar pruebas.
 
-La versión Web se encuentra publicada en el siguiente enlace: [ToDoListAppWeb](todolisttechtest.netlify.app)
+La versión Web se encuentra publicada en el siguiente enlace: [ToDoListAppWeb](https://todolisttechtest.netlify.app)
 
 Cualquier inconveniente o pregunta, pueden contactarme.
 
