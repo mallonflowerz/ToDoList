@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
     addIcons({ add, trash, addCircleOutline, albumsOutline, create, pricetagOutline });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.configService.loadInit();
     this.activeCategories = this.configService.getCategoryActive();
   }
 

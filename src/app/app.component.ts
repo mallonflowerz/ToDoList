@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { FirebaseConfigService } from './services/firebase.config.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,6 @@ import { FirebaseConfigService } from './services/firebase.config.service';
   standalone: true,
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
-  constructor(private configService: FirebaseConfigService) { }
-
-  ngOnInit(): void {
-    this.configService.loadInit();
-  }
-
+export class AppComponent {
+  constructor() { }
 }
